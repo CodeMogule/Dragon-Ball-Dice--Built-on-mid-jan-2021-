@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        
+        <title>Dragon Ball Dice</title>
+    </head>
+
+    <body>
+        <div class="wrapper clearfix">
+            <div class="player-0-panel active">
+                <div class="player-name" id="name-0">Saiyan 1</div>
+                <div class="player-score" id="score-0">43</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-0">11</div>
+                </div>
+            </div>
+            
+            <div class="player-1-panel">
+                <div class="player-name" id="name-1">Saiyan 2</div>
+                <div class="player-score" id="score-1">72</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-1">0</div>
+                </div>
+            </div>
+            
+            <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+            <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+            <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+            
+            <img src="dice-5.png" alt="Dice" class="dice">
+        </div>
+        
+        <script>
+var score, roundScore, Players,afterWin;
+            
+var finalDice
+
+ent()
+
+//Random Numbers
+            
+//dice = Math.floor(Math.random()*6)+1;
+            
+
+//dom 
+
+document.querySelector ('.dice').style.display = 'none';
+document.getElementById('score-0').textContent ='0';
+document.getElementById('score-1').textContent ='0';
+document.getElementById('current-0').textContent ='0';
+document.getElementById('current-1').textContent ='0';
+
+//Events
+    document.querySelector('.btn-roll').addEventListener('click', function(){
+if (afterWin){
+   var  dice = Math.floor(Math.random()*7)+1;
+    
+   var domDice = document.querySelector('.dice')
+  domDice.style.display = 'block';
+  domDice.src = 'dice-' + dice + '.png'
+
+    if (dice !== 1){
+    roundScore += dice
+    document.querySelector('#current-' + Players).textContent = roundScore ;
+}
+    else {
+        nextPlayer()
+    }
+}
+finalDice = dice;
+
+    }
+)
+
+
+document.querySelector('.btn-hold').addEventListener('click', function(){
+if (afterWin){
+    score[Players] += roundScore;
+    document.querySelector('#score-' + Players).textContent = score[Players]
+  
+    if (score[Players]>=100){
+     document.getElementById ('name-'+ Players).textContent = 'Winner'
+    document.querySelector('.dice').style.display = 'none'
+    document.querySelector('.player-' + Players + '-panel').classList.add('Winner')
+    document.querySelector('.player-' + Players + '-panel').classList.remove('active')
+    afterWin = false
+    }
+    else{
+          nextPlayer()
+    }
+    
+}  // The Dry Principle  
+})
+                                                    
+
+
+            
+document.querySelector('.btn-new').addEventListener('click',ent);
+            
+                       
+function ent(){
+    score = [0,0];
+roundScore = 0;
+Players = 0;
+    
+document.querySelector ('.dice').style.display = 'none';
+document.getElementById('score-0').textContent ='0';
+document.getElementById('score-1').textContent ='0';
+document.getElementById('current-0').textContent ='0';
+document.getElementById('current-1').textContent ='0';
+document.getElementById('name-0').textContent = 'Saiyan 1'
+document.getElementById('name-1').textContent = 'Saiyan 2' 
+document.querySelector('.player-0-panel').classList.remove('Winner')
+document.querySelector('.player-1-panel').classList.remove('Winner')
+document.querySelector('.player-0-panel').classList.remove('active')
+document.querySelector('.player-1-panel').classList.remove('active')
+document.querySelector('.player-0-panel').classList.add('active')
+afterWin = true;
+
+    
+}            
+
+function nextPlayer(){
+  
+    
+        Players === 0 ? Players =1 : Players =0
+        roundScore =0 ;
+    
+            document.getElementById('current-0').textContent ='0';
+document.getElementById('current-1').textContent ='0';
+        document.querySelector('.player-0-panel').classList.toggle('active')
+         document.querySelector('.player-1-panel').classList.toggle('active')
+        document.querySelector('.dice').style.display = 'none'
+}
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </script>
+    </body>
+</html>
